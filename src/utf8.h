@@ -35,6 +35,8 @@
 #include <stdbool.h>
 #include <stddef.h>
 
+#include <gumbo-parser-dll.h>
+
 #include "gumbo.h"
 
 #ifdef __cplusplus
@@ -77,31 +79,31 @@ typedef struct GumboInternalUtf8Iterator {
 
 // Returns true if this Unicode code point is in the list of characters
 // forbidden by the HTML5 spec, such as NUL bytes and undefined control chars.
-bool utf8_is_invalid_code_point(int c);
+GUMBO_API bool utf8_is_invalid_code_point(int c);
 
 // Initializes a new Utf8Iterator from the given byte buffer.  The source does
 // not have to be NUL-terminated, but the length must be passed in explicitly.
-void utf8iterator_init(struct GumboInternalParser* parser, const char* source,
+GUMBO_API void utf8iterator_init(struct GumboInternalParser* parser, const char* source,
     size_t source_length, Utf8Iterator* iter);
 
 // Advances the current position by one code point.
-void utf8iterator_next(Utf8Iterator* iter);
+GUMBO_API void utf8iterator_next(Utf8Iterator* iter);
 
 // Returns the current code point as an integer.
-int utf8iterator_current(const Utf8Iterator* iter);
+GUMBO_API int utf8iterator_current(const Utf8Iterator* iter);
 
 // Retrieves and fills the output parameter with the current source position.
-void utf8iterator_get_position(
+GUMBO_API void utf8iterator_get_position(
     const Utf8Iterator* iter, GumboSourcePosition* output);
 
 // Retrieves a character pointer to the start of the current character.
-const char* utf8iterator_get_char_pointer(const Utf8Iterator* iter);
+GUMBO_API const char* utf8iterator_get_char_pointer(const Utf8Iterator* iter);
 
 // Retrieves a character pointer to 1 past the end of the buffer.  This is
 // necessary for certain state machines and string comparisons that would like
 // to look directly for ASCII text in the buffer without going through the
 // decoder.
-const char* utf8iterator_get_end_pointer(const Utf8Iterator* iter);
+GUMBO_API const char* utf8iterator_get_end_pointer(const Utf8Iterator* iter);
 
 // If the upcoming text in the buffer matches the specified prefix (which has
 // length 'length'), consume it and return true.  Otherwise, return false with
@@ -109,21 +111,21 @@ const char* utf8iterator_get_end_pointer(const Utf8Iterator* iter);
 // this returns false.  Note that prefix should not contain null bytes because
 // of the use of strncmp/strncasecmp internally.  All existing use-cases adhere
 // to this.
-bool utf8iterator_maybe_consume_match(
+GUMBO_API bool utf8iterator_maybe_consume_match(
     Utf8Iterator* iter, const char* prefix, size_t length, bool case_sensitive);
 
 // "Marks" a particular location of interest in the input stream, so that it can
 // later be reset() to.  There's also the ability to record an error at the
 // point that was marked, as oftentimes that's more useful than the last
 // character before the error was detected.
-void utf8iterator_mark(Utf8Iterator* iter);
+GUMBO_API void utf8iterator_mark(Utf8Iterator* iter);
 
 // Returns the current input stream position to the mark.
-void utf8iterator_reset(Utf8Iterator* iter);
+GUMBO_API void utf8iterator_reset(Utf8Iterator* iter);
 
 // Sets the position and original text fields of an error to the value at the
 // mark.
-void utf8iterator_fill_error_at_mark(
+GUMBO_API void utf8iterator_fill_error_at_mark(
     Utf8Iterator* iter, struct GumboInternalError* error);
 
 #ifdef __cplusplus

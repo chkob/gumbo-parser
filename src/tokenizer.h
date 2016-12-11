@@ -23,6 +23,8 @@
 #include <stdbool.h>
 #include <stddef.h>
 
+#include <gumbo-parser-dll.h>
+
 #include "gumbo.h"
 #include "token_type.h"
 #include "tokenizer_states.h"
@@ -71,24 +73,24 @@ typedef struct GumboInternalToken {
 
 // Initializes the tokenizer state within the GumboParser object, setting up a
 // parse of the specified text.
-void gumbo_tokenizer_state_init(
+GUMBO_API void gumbo_tokenizer_state_init(
     struct GumboInternalParser* parser, const char* text, size_t text_length);
 
 // Destroys the tokenizer state within the GumboParser object, freeing any
 // dynamically-allocated structures within it.
-void gumbo_tokenizer_state_destroy(struct GumboInternalParser* parser);
+GUMBO_API void gumbo_tokenizer_state_destroy(struct GumboInternalParser* parser);
 
 // Sets the tokenizer state to the specified value.  This is needed by some
 // parser states, which alter the state of the tokenizer in response to tags
 // seen.
-void gumbo_tokenizer_set_state(
+GUMBO_API void gumbo_tokenizer_set_state(
     struct GumboInternalParser* parser, GumboTokenizerEnum state);
 
 // Flags whether the current node is a foreign content element.  This is
 // necessary for the markup declaration open state, where the tokenizer must be
 // aware of the state of the parser to properly tokenize bad comment tags.
 // http://www.whatwg.org/specs/web-apps/current-work/multipage/tokenization.html#markup-declaration-open-state
-void gumbo_tokenizer_set_is_current_node_foreign(
+GUMBO_API void gumbo_tokenizer_set_is_current_node_foreign(
     struct GumboInternalParser* parser, bool is_foreign);
 
 // Lexes a single token from the specified buffer, filling the output with the
@@ -104,7 +106,7 @@ void gumbo_tokenizer_set_is_current_node_foreign(
 //     gumbo_token_destroy(&parser, &token);
 //   }
 //   gumbo_tokenizer_state_destroy(&parser);
-bool gumbo_lex(struct GumboInternalParser* parser, GumboToken* output);
+GUMBO_API bool gumbo_lex(struct GumboInternalParser* parser, GumboToken* output);
 
 // Frees the internally-allocated pointers within an GumboToken.  Note that this
 // doesn't free the token itself, since oftentimes it will be allocated on the
@@ -114,7 +116,7 @@ bool gumbo_lex(struct GumboInternalParser* parser, GumboToken* output);
 // Note that if you are handing over ownership of the internal strings to some
 // other data structure - for example, a parse tree - these do not need to be
 // freed.
-void gumbo_token_destroy(struct GumboInternalParser* parser, GumboToken* token);
+GUMBO_API void gumbo_token_destroy(struct GumboInternalParser* parser, GumboToken* token);
 
 #ifdef __cplusplus
 }

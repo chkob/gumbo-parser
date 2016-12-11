@@ -27,6 +27,8 @@
 #ifndef GUMBO_TOKENIZER_STATES_H_
 #define GUMBO_TOKENIZER_STATES_H_
 
+#include <gumbo-parser-dll.h>
+
 // The ordering of this enum is also used to build the dispatch table for the
 // tokenizer state machine, so if it is changed, be sure to update that too.
 typedef enum {

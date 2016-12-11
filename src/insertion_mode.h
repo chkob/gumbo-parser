@@ -17,6 +17,8 @@
 #ifndef GUMBO_INSERTION_MODE_H_
 #define GUMBO_INSERTION_MODE_H_
 
+#include <gumbo-parser-dll.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif

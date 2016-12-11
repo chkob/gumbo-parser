@@ -25,6 +25,8 @@
 #include <stdbool.h>
 #include <stddef.h>
 
+#include <gumbo-parser-dll.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -38,20 +40,20 @@ struct GumboInternalParser;
 // have the convention that all const char* in parse tree structures are
 // freshly-allocated, so if we didn't copy, we'd try to delete a literal string
 // when the parse tree is destroyed.
-char* gumbo_copy_stringz(struct GumboInternalParser* parser, const char* str);
+GUMBO_API char* gumbo_copy_stringz(struct GumboInternalParser* parser, const char* str);
 
 // Allocate a chunk of memory, using the allocator specified in the Parser's
 // config options.
-void* gumbo_parser_allocate(
+GUMBO_API void* gumbo_parser_allocate(
     struct GumboInternalParser* parser, size_t num_bytes);
 
 // Deallocate a chunk of memory, using the deallocator specified in the Parser's
 // config options.
-void gumbo_parser_deallocate(struct GumboInternalParser* parser, void* ptr);
+GUMBO_API void gumbo_parser_deallocate(struct GumboInternalParser* parser, void* ptr);
 
 // Debug wrapper for printf, to make it easier to turn off debugging info when
 // required.
-void gumbo_debug(const char* format, ...);
+GUMBO_API void gumbo_debug(const char* format, ...);
 
 #ifdef __cplusplus
 }

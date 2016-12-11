@@ -77,3 +77,6 @@ get_title
 positions_of_class
 prettyprint
 serialize
+/visualc/.vs
+/visualc/gumbo-parser.VC.db
+/visualc/x64

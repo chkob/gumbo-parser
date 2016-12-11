@@ -17,6 +17,8 @@
 #ifndef GUMBO_VECTOR_H_
 #define GUMBO_VECTOR_H_
 
+#include <gumbo-parser-dll.h>
+
 #include "gumbo.h"
 
 #ifdef __cplusplus

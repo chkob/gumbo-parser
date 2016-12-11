@@ -17,6 +17,8 @@
 #ifndef GUMBO_ATTRIBUTE_H_
 #define GUMBO_ATTRIBUTE_H_
 
+#include <gumbo-parser-dll.h>
+
 #include "gumbo.h"
 
 #ifdef __cplusplus
@@ -27,7 +29,7 @@ struct GumboInternalParser;
 
 // Release the memory used for an GumboAttribute, including the attribute
 // itself.
-void gumbo_destroy_attribute(
+GUMBO_API void gumbo_destroy_attribute(
     struct GumboInternalParser* parser, GumboAttribute* attribute);
 
 #ifdef __cplusplus

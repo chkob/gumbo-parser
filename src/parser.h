@@ -20,6 +20,8 @@
 #ifndef GUMBO_PARSER_H_
 #define GUMBO_PARSER_H_
 
+#include <gumbo-parser-dll.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
